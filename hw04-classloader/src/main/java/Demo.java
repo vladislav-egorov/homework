@@ -1,6 +1,7 @@
 public class Demo {
 
     public static void main(String[] args) {
-        new TestLogging().calculation(256);
+        IoC.createMyClass().calculation(256);
+        IoC.createMyClass().withOutLogCalculation(256);
     }
 }
