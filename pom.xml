@@ -10,6 +10,7 @@
     <modules>
         <module>hw01-maven</module>
         <module>hw02-DIY-ArrayList</module>
+        <module>hw-03testframework</module>
     </modules>
 
     <properties>
