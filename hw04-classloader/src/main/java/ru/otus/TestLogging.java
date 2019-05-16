@@ -1,3 +1,5 @@
+package ru.otus;
+
 public class TestLogging implements TestLoggingInterface {
 
     @Log

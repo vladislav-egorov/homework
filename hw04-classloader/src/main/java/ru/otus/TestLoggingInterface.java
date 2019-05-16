@@ -1,3 +1,5 @@
+package ru.otus;
+
 interface TestLoggingInterface {
 
     void calculation(int param);
