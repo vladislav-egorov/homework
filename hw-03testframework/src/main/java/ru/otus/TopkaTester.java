@@ -27,9 +27,19 @@ public class TopkaTester {
                     beforeMethod.invoke(testClassObj);
                 }
                 method.invoke(testClassObj);
+                try {
+                    for (var afterMethod : testPlan.get(AFTER_METHODS_KEY)) {
+                        afterMethod.invoke(testClassObj);
+                    }
+                } catch (Exception ex) {
+                    System.out.println("Catch failing test, current failed tests count: " + failed);
+                    System.out.println(ex.getCause().getMessage());
+                    failed++;
+                    continue;
+                }
                 passed++;
             } catch (Exception ex) {
-                System.out.println("Catch failing test, current failed ru.otus.tests count: " + failed);
+                System.out.println("Catch failing test, current failed tests count: " + failed);
                 System.out.println(ex.getCause().getMessage());
                 failed++;
             }
@@ -38,9 +48,8 @@ public class TopkaTester {
                     afterMethod.invoke(testClassObj);
                 }
             } catch (Exception ex) {
-                System.out.println("Catch failing test, current failed ru.otus.tests count: " + failed);
+                System.out.println("Catch failing test, current failed tests count: " + failed);
                 System.out.println(ex.getCause().getMessage());
-                failed++;
             }
         }
         System.out.println("Testing results:\nTest passed = " + passed + "\nTest failed = " + failed);
