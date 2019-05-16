@@ -1,4 +1,4 @@
-package tests;
+package ru.otus.tests;
 
 public interface AbstractTestInterface {
 }

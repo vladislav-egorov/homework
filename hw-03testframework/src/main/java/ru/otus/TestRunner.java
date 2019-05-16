@@ -1,4 +1,6 @@
-import tests.MainTests;
+package ru.otus;
+
+import ru.otus.tests.MainTests;
 
 import java.lang.reflect.InvocationTargetException;
 

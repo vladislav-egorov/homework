@@ -1,8 +1,8 @@
-package tests;
+package ru.otus.tests;
 
-import annotations.After;
-import annotations.Before;
-import annotations.Test;
+import ru.otus.annotations.After;
+import ru.otus.annotations.Before;
+import ru.otus.annotations.Test;
 
 public class MainTests implements AbstractTestInterface {
 
