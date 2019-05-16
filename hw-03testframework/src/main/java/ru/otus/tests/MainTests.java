@@ -13,7 +13,7 @@ public class MainTests implements AbstractTestInterface {
 
     @After
     public void after() {
-        System.out.println("Test finished.");
+        throw new RuntimeException("RuntimeException: something is wrong!");
     }
 
 

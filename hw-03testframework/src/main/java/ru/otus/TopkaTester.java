@@ -20,13 +20,15 @@ public class TopkaTester {
         var testPlan = createTestPlan(clazz.getMethods());
 
         for (var method : testPlan.get(TEST_METHODS_KEY)
-                ) {
+        ) {
+            var isPassed = false;
             var testClassObj = clazz.getDeclaredConstructor().newInstance();
             try {
                 for (var beforeMethod : testPlan.get(BEFORE_METHODS_KEY)) {
                     beforeMethod.invoke(testClassObj);
                 }
                 method.invoke(testClassObj);
+                isPassed = true;
                 try {
                     for (var afterMethod : testPlan.get(AFTER_METHODS_KEY)) {
                         afterMethod.invoke(testClassObj);
@@ -34,22 +36,15 @@ public class TopkaTester {
                 } catch (Exception ex) {
                     System.out.println("Catch failing test, current failed tests count: " + failed);
                     System.out.println(ex.getCause().getMessage());
-                    failed++;
-                    continue;
                 }
-                passed++;
             } catch (Exception ex) {
                 System.out.println("Catch failing test, current failed tests count: " + failed);
                 System.out.println(ex.getCause().getMessage());
-                failed++;
             }
-            try {
-                for (var afterMethod : testPlan.get(AFTER_METHODS_KEY)) {
-                    afterMethod.invoke(testClassObj);
-                }
-            } catch (Exception ex) {
-                System.out.println("Catch failing test, current failed tests count: " + failed);
-                System.out.println(ex.getCause().getMessage());
+            if (isPassed) {
+                passed++;
+            } else {
+                failed++;
             }
         }
         System.out.println("Testing results:\nTest passed = " + passed + "\nTest failed = " + failed);
