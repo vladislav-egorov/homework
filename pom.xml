@@ -10,7 +10,7 @@
     <modules>
         <module>hw01-maven</module>
         <module>hw02-DIY-ArrayList</module>
-        <module>hw04-classloader</module>
+        <module>hw-03testframework</module>
     </modules>
 
     <properties>
@@ -30,21 +30,6 @@
         </dependencies>
     </dependencyManagement>
 
-    <repositories>
-        <repository>
-            <id>nspkrep</id>
-            <name>NspkRepository</name>
-            <url>http://nexus.nspk.ru:8081/nexus/content/repositories/central</url>
-        </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>nspkrep</id>
-            <name>NspkRepository</name>
-            <url>http://nexus.nspk.ru:8081/nexus/content/repositories/central</url>
-        </pluginRepository>
-    </pluginRepositories>
     <packaging>pom</packaging>
 
     <build>
@@ -58,4 +43,6 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    
 </project>
