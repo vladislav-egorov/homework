@@ -134,7 +134,7 @@ public class DIYArrayList<T> implements List<T> {
 
     @Override
     public T set(int index, T element) {
-        Objects.checkIndex(index, size);
+        //Objects.checkIndex(index, size);
         T oldValue = elementData(index);
         elementData[index] = element;
         return oldValue;
