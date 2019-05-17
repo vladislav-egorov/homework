@@ -9,8 +9,6 @@ import java.util.Set;
 
 class IoC {
 
-    private static Set<String> methodsWithLogAnnotation = new HashSet<>();
-
     static TestLoggingInterface createMyClass() {
         InvocationHandler handler = new DemoInvocationHandler(new TestLogging());
         return (TestLoggingInterface) Proxy.newProxyInstance(IoC.class.getClassLoader(),
@@ -19,18 +17,26 @@ class IoC {
 
     static class DemoInvocationHandler implements InvocationHandler {
         private final TestLoggingInterface myClass;
+        private Set<String> methodsWithLogAnnotation;
 
         DemoInvocationHandler(TestLoggingInterface myClass) {
-            Method[] allClassMethods = myClass.getClass().getDeclaredMethods();
+            this.methodsWithLogAnnotation = getKeysForAllMethodsWithAnnotation(
+                    myClass.getClass().getDeclaredMethods(),
+                    Log.class);
+            this.myClass = myClass;
+        }
+
+        private Set<String> getKeysForAllMethodsWithAnnotation(Method[] allClassMethods, Class annotationClass) {
+            Set<String> resultSet = new HashSet<>();
             Arrays.stream(allClassMethods).forEach(
                     method -> {
-                        if (method.isAnnotationPresent(Log.class)) {
-                            methodsWithLogAnnotation.add(
+                        if (method.isAnnotationPresent(annotationClass)) {
+                            resultSet.add(
                                     method.getName() + Arrays.toString(method.getParameters()));
                         }
                     }
             );
-            this.myClass = myClass;
+            return resultSet;
         }
 
         @Override
