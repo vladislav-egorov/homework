@@ -13,9 +13,9 @@ public class Starter {
         banknotes2.add(2000);
         banknotes2.add(100);
 
-        var atm = new Atm(new MoneyBundle(banknotes));
+        var atm = new Atm(banknotes);
         atm.showStatus();
-        atm.replenish(new MoneyBundle(banknotes2));
+        atm.replenish(banknotes2);
         atm.showStatus();
         atm.extradite(3200);
         atm.showStatus();

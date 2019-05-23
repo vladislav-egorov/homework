@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Atm {
     private MoneyBundle moneyBundle;
@@ -11,8 +12,16 @@ public class Atm {
         this.moneyBundle = moneyBundle;
     }
 
+    public Atm(List<Integer> banknoteList) {
+        this(new MoneyBundle(banknoteList));
+    }
+
     public void replenish(MoneyBundle moneyBundle) {
         this.moneyBundle.concat(moneyBundle);
+    }
+
+    public void replenish(List<Integer> banknoteList) {
+        replenish(new MoneyBundle(banknoteList));
     }
 
     public void extradite(int amount) {
