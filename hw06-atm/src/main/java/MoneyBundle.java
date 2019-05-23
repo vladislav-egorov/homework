@@ -9,7 +9,7 @@ public class MoneyBundle {
 
     public MoneyBundle(List<Integer> banknotes) {
         banknotesMap = fromList(banknotes);
-        totalCost = calcTotalCost();
+        calcTotalCost();
     }
 
     private Map<Banknote, Integer> fromList(List<Integer> banknotes) {
@@ -30,70 +30,20 @@ public class MoneyBundle {
         return map;
     }
 
-    private long calcTotalCost() {
+    public void calcTotalCost() {
         long totalCost = 0;
         for (var entry : banknotesMap.entrySet()) {
             totalCost = totalCost + entry.getKey().getNominalValue() * entry.getValue();
         }
-        return totalCost;
-    }
-
-    public void concat(MoneyBundle moneyBundle) {
-        moneyBundle.banknotesMap.forEach(
-                (banknote, count) -> {
-                    var totalCount = this.banknotesMap.get(banknote) + count;
-                    this.banknotesMap.put(banknote, totalCount);
-                }
-        );
-        totalCost = calcTotalCost();
-    }
-
-    public void minusSum(int sum) {
-        if (sum == 0) {
-            return;
-        }
-        var banknote = getMaxValueBanknoteForAmount(sum);
-        var maxValue = banknote.getNominalValue();
-        if (sum >= maxValue) {
-            minusBanknote(banknote);
-            minusSum(sum - maxValue);
-        } else {
-            throw new RuntimeException("Impossible minus sum calculation for sum " + sum + " money bundle: " + this);
-        }
-    }
-
-    private void minusBanknote(Banknote targetBanknote) {
-        banknotesMap.forEach(
-                (banknote, count) -> {
-                    if (banknote.equals(targetBanknote)) {
-                        if (count > 0) {
-                            banknotesMap.put(banknote, count - 1);
-                        } else {
-                            throw new RuntimeException("Empty banknote slot: " + banknote);
-                        }
-                    }
-                }
-        );
-        totalCost = calcTotalCost();
-    }
-
-    private Banknote getMaxValueBanknoteForAmount(int amount) {
-        final Banknote[] maxBanknote = {Banknote.FIFTY};
-        banknotesMap.forEach(
-                (banknote, value) -> {
-                    var nominalValue = banknote.getNominalValue();
-                    if (value > 0 &&
-                            nominalValue > maxBanknote[0].getNominalValue() &&
-                            nominalValue <= amount) {
-                        maxBanknote[0] = banknote;
-                    }
-                }
-        );
-        return maxBanknote[0];
+        this.totalCost = totalCost;
     }
 
     @Override
     public String toString() {
         return banknotesMap.toString() + "\nTotal Cost: " + totalCost;
+    }
+
+    public Map<Banknote, Integer> getBanknotesMap() {
+        return banknotesMap;
     }
 }
