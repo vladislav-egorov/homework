@@ -10,7 +10,7 @@ public class Starter {
         products.add("MDT");
         products.add("MCD");
         PojoBank pojoBank = new PojoBank(12344, "VTB24", acqBins, products);
-        //System.out.println(pojoBank);
+        System.out.println(pojoBank);
         String json = Gson.toJson(pojoBank);
         System.out.println(json);
     }
