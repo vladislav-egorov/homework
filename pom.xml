@@ -13,6 +13,7 @@
         <module>hw03-testframework</module>
         <module>hw04-classloader</module>
         <module>hw06-atm</module>
+        <module>hw08json</module>
     </modules>
 
     <properties>
