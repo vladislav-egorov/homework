@@ -51,18 +51,24 @@ public class NewGson {
 
     private static String parseValue(Object object) {
         Class clazz = object.getClass();
-        if (noParsingClasses.contains(clazz)
-                || clazz.equals(String.class)
-                || clazz.equals(Character.class)) {
+        if (noParsingClasses.contains(clazz)) {
             return object.toString();
+        } else if (clazz.equals(String.class) || clazz.equals(Character.class)) {
+            return "\"" + object + "\"";
         } else if (clazz.isArray()) {
             //Я не знаю, как сделать лучше, такой варинт - отстой
-            if (byte[].class.equals(clazz)) return parseCollection(Bytes.asList((byte[]) object));
-            else if (short[].class.equals(clazz)) return parseCollection(Shorts.asList((short[]) object));
-            else if (int[].class.equals(clazz)) return parseCollection(Ints.asList((int[]) object));
-            else if (long[].class.equals(clazz)) return parseCollection(Longs.asList((long[]) object));
-            else if (float[].class.equals(clazz)) return parseCollection(Floats.asList((float[]) object));
-            else if (double[].class.equals(clazz)) return parseCollection(Doubles.asList((double[]) object));
+            if (byte[].class.equals(clazz))
+                return parseCollection(Bytes.asList((byte[]) object));
+            else if (short[].class.equals(clazz))
+                return parseCollection(Shorts.asList((short[]) object));
+            else if (int[].class.equals(clazz))
+                return parseCollection(Ints.asList((int[]) object));
+            else if (long[].class.equals(clazz))
+                return parseCollection(Longs.asList((long[]) object));
+            else if (float[].class.equals(clazz))
+                return parseCollection(Floats.asList((float[]) object));
+            else if (double[].class.equals(clazz))
+                return parseCollection(Doubles.asList((double[]) object));
             else parseArray((Object[]) object);
         } else if (Collection.class.isAssignableFrom(clazz)) {
             return parseCollection((Collection) object);
