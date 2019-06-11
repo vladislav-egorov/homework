@@ -1,8 +1,8 @@
 package ru.otus;
 
 import com.google.common.base.Joiner;
-import com.google.common.primitives.*;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
@@ -56,20 +56,11 @@ public class NewGson {
         } else if (clazz.equals(String.class) || clazz.equals(Character.class)) {
             return "\"" + object + "\"";
         } else if (clazz.isArray()) {
-            //Я не знаю, как сделать лучше, такой варинт - отстой
-            if (byte[].class.equals(clazz))
-                return parseCollection(Bytes.asList((byte[]) object));
-            else if (short[].class.equals(clazz))
-                return parseCollection(Shorts.asList((short[]) object));
-            else if (int[].class.equals(clazz))
-                return parseCollection(Ints.asList((int[]) object));
-            else if (long[].class.equals(clazz))
-                return parseCollection(Longs.asList((long[]) object));
-            else if (float[].class.equals(clazz))
-                return parseCollection(Floats.asList((float[]) object));
-            else if (double[].class.equals(clazz))
-                return parseCollection(Doubles.asList((double[]) object));
-            else parseArray((Object[]) object);
+            List<Object> arrayAsList = new ArrayList<>();
+            for (int i = 0; i < Array.getLength(object); i++) {
+                arrayAsList.add(Array.get(object, i));
+            }
+            return parseCollection(arrayAsList);
         } else if (Collection.class.isAssignableFrom(clazz)) {
             return parseCollection((Collection) object);
         }
@@ -78,35 +69,21 @@ public class NewGson {
 
     private static String parseField(Field field, Object object) throws IllegalAccessException {
         field.setAccessible(true);
-        String result = jsonConcatString(field.getName(), parseValue(field.get(object)),
-                !noParsingClasses.contains(field.get(object).getClass()));
+        String result = jsonConcatString(field.getName(), parseValue(field.get(object)));
         field.setAccessible(false);
         return result;
     }
 
-    private static String jsonConcatString(String s1, String s2, boolean isQuotesNeeded) {
-        if (s2.startsWith("[") || !isQuotesNeeded) {
-            return "\"" + s1 + "\":" + s2 + "";
-        } else {
-            return "\"" + s1 + "\":\"" + s2 + "\"";
-        }
+    private static String jsonConcatString(String s1, String s2) {
+        return "\"" + s1 + "\":" + s2 + "";
     }
 
+    @SuppressWarnings("unchecked")
     private static String parseCollection(Collection collection) {
         List<String> printList = new ArrayList<>();
         collection.forEach(
-                o -> {
-                    if (noParsingClasses.contains(o.getClass())) {
-                        printList.add(o.toString());
-                    } else {
-                        printList.add("\"" + o.toString() + "\"");
-                    }
-                }
+                o -> printList.add(parseValue(o))
         );
         return "[" + Joiner.on(",").join(printList) + "]";
-    }
-
-    private static <T> String parseArray(T[] array) {
-        return parseCollection(Arrays.asList(array));
     }
 }
