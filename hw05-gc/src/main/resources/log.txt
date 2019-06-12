@@ -1,0 +1,92 @@
+Starting pid: 10692@DESKTOP-U8JAGC5
+MinorGC: Count = 0, time(ms) = 0 MajorGC: Count = 0, time(ms) = 0
+MinorGC: Count = 0, time(ms) = 0 MajorGC: Count = 0, time(ms) = 0
+MinorGC: Count = 0, time(ms) = 0 MajorGC: Count = 0, time(ms) = 0
+MinorGC: Count = 0, time(ms) = 0 MajorGC: Count = 0, time(ms) = 0
+MinorGC: Count = 0, time(ms) = 0 MajorGC: Count = 0, time(ms) = 0
+MinorGC: Count = 0, time(ms) = 0 MajorGC: Count = 0, time(ms) = 0
+MinorGC: Count = 0, time(ms) = 0 MajorGC: Count = 0, time(ms) = 0
+java.lang.OutOfMemoryError: Java heap space
+Dumping heap to C:\Users\admin\IdeaProjects\homework-1\hw05-gc\src\main\resources\dumps1\java_pid10692.hprof ...
+Heap dump file created [2767963606 bytes in 24.597 secs]
+Exception in thread "main" Exception in thread "Timer-0" java.lang.OutOfMemoryError: Java heap space
+	at java.base/java.util.HashMap$Values.spliterator(HashMap.java:966)
+	at java.base/java.util.Collection.stream(Collection.java:711)
+	at java.management/java.lang.management.ManagementFactory$PlatformMBeanFinder.findFirst(ManagementFactory.java:976)
+	at java.management/java.lang.management.ManagementFactory.getPlatformMXBeans(ManagementFactory.java:719)
+	at java.management/java.lang.management.ManagementFactory.getGarbageCollectorMXBeans(ManagementFactory.java:430)
+	at ru.otus.CollectorController.printGCMetricks(GC.java:19)
+	at ru.otus.GcTimer.run(GcPrintMetricTimer.java:9)
+	at java.base/java.util.TimerThread.mainLoop(Timer.java:556)
+	at java.base/java.util.TimerThread.run(Timer.java:506)
+java.lang.OutOfMemoryError: Java heap space
+	at java.base/java.lang.Integer.toString(Integer.java:440)
+	at java.base/java.lang.String.valueOf(String.java:3058)
+	at ru.otus.Benchmark.start(Benchmark.java:22)
+	at ru.otus.Strarter.main(Main.java:20)
+
+
+"C:\Program Files\Java\jdk-11.0.2\bin\java.exe" -Xms1G -Xmx2G -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=C:\Users\admin\IdeaProjects\homework-1\hw05-gc\src\main\resources\dumps2\ -XX:+UseParallelGC "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.1\lib\idea_rt.jar=3045:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.1\bin" -Dfile.encoding=UTF-8 -classpath C:\Users\admin\IdeaProjects\homework-1\hw05-gc\target\classes ru.otus.Strarter
+Starting pid: 11728@DESKTOP-U8JAGC5
+MinorGC: Count = 0, time(ms) = 0 MajorGC: Count = 0, time(ms) = 0
+MinorGC: Count = 1, time(ms) = 179 MajorGC: Count = 0, time(ms) = 0
+MinorGC: Count = 2, time(ms) = 431 MajorGC: Count = 0, time(ms) = 0
+MinorGC: Count = 4, time(ms) = 912 MajorGC: Count = 1, time(ms) = 1739
+MinorGC: Count = 6, time(ms) = 1749 MajorGC: Count = 1, time(ms) = 1739
+MinorGC: Count = 7, time(ms) = 2053 MajorGC: Count = 3, time(ms) = 6474
+java.lang.OutOfMemoryError: Java heap space
+Dumping heap to C:\Users\admin\IdeaProjects\homework-1\hw05-gc\src\main\resources\dumps2\java_pid11728.hprof ...
+Heap dump file created [2147210770 bytes in 15.033 secs]
+Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+	at java.base/java.util.Arrays.copyOf(Arrays.java:3689)
+	at java.base/java.util.ArrayList.grow(ArrayList.java:237)
+	at java.base/java.util.ArrayList.grow(ArrayList.java:242)
+	at java.base/java.util.ArrayList.add(ArrayList.java:485)
+	at java.base/java.util.ArrayList.add(ArrayList.java:498)
+	at ru.otus.Benchmark.start(Benchmark.java:22)
+	at ru.otus.Strarter.main(Main.java:20)
+
+	"C:\Program Files\Java\jdk-11.0.2\bin\java.exe" -Xms1G -Xmx2G -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=C:\Users\admin\IdeaProjects\homework-1\hw05-gc\src\main\resources\dumps3\ -XX:+UseConcMarkSweepGC "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.1\lib\idea_rt.jar=3143:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.1\bin" -Dfile.encoding=UTF-8 -classpath C:\Users\admin\IdeaProjects\homework-1\hw05-gc\target\classes ru.otus.Strarter
+Java HotSpot(TM) 64-Bit Server VM warning: Option UseConcMarkSweepGC was deprecated in version 9.0 and will likely be removed in a future release.
+Starting pid: 6900@DESKTOP-U8JAGC5
+MinorGC: Count = 0, time(ms) = 0 MajorGC: Count = 0, time(ms) = 0
+MinorGC: Count = 1, time(ms) = 996 MajorGC: Count = 0, time(ms) = 0
+MinorGC: Count = 2, time(ms) = 1348 MajorGC: Count = 4, time(ms) = 694
+MinorGC: Count = 4, time(ms) = 2163 MajorGC: Count = 11, time(ms) = 2170
+MinorGC: Count = 5, time(ms) = 2435 MajorGC: Count = 16, time(ms) = 2432
+MinorGC: Count = 6, time(ms) = 2835 MajorGC: Count = 22, time(ms) = 2747
+MinorGC: Count = 8, time(ms) = 3703 MajorGC: Count = 35, time(ms) = 3942
+java.lang.OutOfMemoryError: Java heap space
+Dumping heap to C:\Users\admin\IdeaProjects\homework-1\hw05-gc\src\main\resources\dumps3\java_pid6900.hprof ...
+Heap dump file created [2814411726 bytes in 40.841 secs]
+Exception in thread "main" Exception in thread "Timer-0" java.lang.OutOfMemoryError: Java heap space
+	at java.base/java.util.HashMap$Values.spliterator(HashMap.java:966)
+	at java.base/java.util.Collection.stream(Collection.java:711)
+	at java.management/java.lang.management.ManagementFactory$PlatformMBeanFinder.findFirst(ManagementFactory.java:976)
+	at java.management/java.lang.management.ManagementFactory.getPlatformMXBeans(ManagementFactory.java:719)
+	at java.management/java.lang.management.ManagementFactory.getGarbageCollectorMXBeans(ManagementFactory.java:430)
+	at ru.otus.CollectorController.printGCMetricks(GC.java:19)
+	at ru.otus.GcTimer.run(GcPrintMetricTimer.java:9)
+	at java.base/java.util.TimerThread.mainLoop(Timer.java:556)
+	at java.base/java.util.TimerThread.run(Timer.java:506)
+java.lang.OutOfMemoryError: Java heap space
+	at java.base/java.lang.Integer.toString(Integer.java:442)
+	at java.base/java.lang.String.valueOf(String.java:3058)
+	at ru.otus.Benchmark.start(Benchmark.java:22)
+	at ru.otus.Strarter.main(Main.java:20)
+
+"C:\Program Files\Java\jdk-11.0.2\bin\java.exe" -Xms1G -Xmx2G -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=C:\Users\admin\IdeaProjects\homework-1\hw05-gc\src\main\resources\dumps4\ -XX:+UseG1GC "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.1\lib\idea_rt.jar=3277:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.1\bin" -Dfile.encoding=UTF-8 -classpath C:\Users\admin\IdeaProjects\homework-1\hw05-gc\target\classes ru.otus.Strarter
+Starting pid: 11752@DESKTOP-U8JAGC5
+MinorGC: Count = 0, time(ms) = 0 MajorGC: Count = 0, time(ms) = 0
+MinorGC: Count = 6, time(ms) = 324 MajorGC: Count = 0, time(ms) = 0
+MinorGC: Count = 11, time(ms) = 590 MajorGC: Count = 0, time(ms) = 0
+MinorGC: Count = 16, time(ms) = 891 MajorGC: Count = 0, time(ms) = 0
+MinorGC: Count = 22, time(ms) = 1163 MajorGC: Count = 0, time(ms) = 0
+MinorGC: Count = 27, time(ms) = 1482 MajorGC: Count = 0, time(ms) = 0
+MinorGC: Count = 32, time(ms) = 1785 MajorGC: Count = 0, time(ms) = 0
+java.lang.OutOfMemoryError: Java heap space
+Dumping heap to C:\Users\admin\IdeaProjects\homework-1\hw05-gc\src\main\resources\dumps4\java_pid11752.hprof ...
+
+Exception: java.lang.OutOfMemoryError thrown from the UncaughtExceptionHandler in thread "Timer-0"
+Heap dump file created [2856290766 bytes in 39.594 secs]
+Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
