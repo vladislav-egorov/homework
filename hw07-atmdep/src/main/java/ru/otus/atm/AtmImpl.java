@@ -1,20 +1,19 @@
-package ru.otus.classes;
+package ru.otus.atm;
 
-import ru.otus.interfaces.IAtm;
 import ru.otus.momento.AtmMomento;
 
 import java.util.List;
 
-public class Atm implements IAtm {
+public class AtmImpl implements Atm {
     private final AtmMomento atmMomento;
     private MoneyBundle moneyBundle;
 
-    public Atm(MoneyBundle moneyBundle) {
+    public AtmImpl(MoneyBundle moneyBundle) {
         this.moneyBundle = moneyBundle;
         this.atmMomento = new AtmMomento(new MoneyBundle(moneyBundle));
     }
 
-    public Atm(List<Integer> banknoteList) {
+    public AtmImpl(List<Integer> banknoteList) {
         this(new MoneyBundle(banknoteList));
     }
 

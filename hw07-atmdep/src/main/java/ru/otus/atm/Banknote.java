@@ -1,4 +1,4 @@
-package ru.otus.enums;
+package ru.otus.atm;
 
 import java.util.Arrays;
 

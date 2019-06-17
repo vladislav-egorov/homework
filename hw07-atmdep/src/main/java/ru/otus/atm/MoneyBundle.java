@@ -1,11 +1,9 @@
-package ru.otus.classes;
-
-import ru.otus.enums.Banknote;
+package ru.otus.atm;
 
 import java.util.*;
 
 public class MoneyBundle {
-    private final TreeMap<Banknote, Integer> banknotesMap;
+    private TreeMap<Banknote, Integer> banknotesMap;
 
     public MoneyBundle(List<Integer> banknotes) {
         banknotesMap = fromList(banknotes);
@@ -60,18 +58,17 @@ public class MoneyBundle {
     }
 
     public Banknote getMaxValueBanknoteForAmount(double amount) {
-        final Banknote[] maxBanknote = {getMinBanknote()};
-        banknotesMap.forEach(
-                (banknote, value) -> {
-                    var nominalValue = banknote.getNominalValue();
-                    if (value > 0 &&
-                            nominalValue > maxBanknote[0].getNominalValue() &&
-                            nominalValue <= amount) {
-                        maxBanknote[0] = banknote;
-                    }
-                }
-        );
-        return maxBanknote[0];
+        Banknote maxBanknote = getMinBanknote();
+        for (var entry : banknotesMap.entrySet()) {
+            var banknote = entry.getKey();
+            var nominalValue = banknote.getNominalValue();
+            if (entry.getValue() > 0 &&
+                    nominalValue > maxBanknote.getNominalValue() &&
+                    nominalValue <= amount) {
+                maxBanknote = banknote;
+            }
+        }
+        return maxBanknote;
     }
 
     public void minusBanknote(Banknote targetBanknote) {

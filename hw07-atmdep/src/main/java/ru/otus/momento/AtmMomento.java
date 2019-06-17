@@ -1,6 +1,6 @@
 package ru.otus.momento;
 
-import ru.otus.classes.MoneyBundle;
+import ru.otus.atm.MoneyBundle;
 
 public class AtmMomento {
     private MoneyBundle moneyBundle;

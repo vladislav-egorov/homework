@@ -1,14 +1,16 @@
 package ru.otus;
 
-import ru.otus.classes.Atm;
-import ru.otus.classes.AtmCommander;
-import ru.otus.classes.Department;
+import ru.otus.atm.AtmCommander;
+import ru.otus.atm.AtmImpl;
+import ru.otus.atm.Department;
+import ru.otus.command.AtmCommandReset;
+import ru.otus.exeptions.ImpossibleExtraditeException;
 
 import java.util.List;
 
 public class Starter {
-    public static void main(String[] args) {
-        var atm = new Atm(List.of(100, 100, 2000, 5000, 1000, 100));
+    public static void main(String[] args) throws ImpossibleExtraditeException {
+        var atm = new AtmImpl(List.of(100, 100, 2000, 5000, 1000, 100));
 
         AtmCommander atmCommander = new AtmCommander(atm);
         atmCommander.showStatus();
@@ -18,10 +20,11 @@ public class Starter {
         atmCommander.showStatus();
         atmCommander.extradite(3215);
         atmCommander.showStatus();
-        atmCommander.resetStatus();
+        AtmCommandReset atmCommandReset = new AtmCommandReset(atm);
+        atmCommandReset.execute();
         atmCommander.showStatus();
 
-        var atm2 = new Atm(List.of(5000, 5000, 500, 200, 100, 50, 50, 5000, 2000, 1000));
+        var atm2 = new AtmImpl(List.of(5000, 5000, 500, 200, 100, 50, 50, 5000, 2000, 1000));
         AtmCommander atmCommander2 = new AtmCommander(atm2);
         atmCommander2.showStatus();
         atmCommander2.replenish(List.of(5000, 500));

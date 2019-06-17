@@ -1,12 +1,12 @@
-package ru.otus.classes;
+package ru.otus.atm;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Department {
-    private Map<String, Atm> atms = new HashMap<>();
+    private Map<String, AtmImpl> atms = new HashMap<>();
 
-    public void addAtm(String atmName, Atm atm) {
+    public void addAtm(String atmName, AtmImpl atm) {
         atms.put(atmName, atm);
     }
 
@@ -14,7 +14,7 @@ public class Department {
         atms.remove(atmName);
     }
 
-    public Atm getAtm(String atmName) {
+    public AtmImpl getAtm(String atmName) {
         return atms.get(atmName);
     }
 
@@ -27,7 +27,7 @@ public class Department {
 
     public double getCommonBalance() {
         int sum = 0;
-        for (Map.Entry<String, Atm> entry : atms.entrySet()) {
+        for (Map.Entry<String, AtmImpl> entry : atms.entrySet()) {
             sum += entry.getValue().getBalance();
         }
         return sum;
